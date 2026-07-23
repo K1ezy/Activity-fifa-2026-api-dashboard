@@ -1,0 +1,191 @@
+:root {
+  --bg-color: #050511;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --neon-green: #00ff87;
+  --neon-purple: #9d00ff;
+  --text-main: #ffffff;
+  --text-muted: #8da4b0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'FWC2026', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  padding: 2rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Adds a cool atmospheric glow behind the dashboard specifically at the back of the page title */
+.background-glow {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(157,0,255,0.15) 0%, rgba(5,5,17,0) 70%);
+  z-index: -1;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+
+header h1 {
+  font-weight: 800;
+  font-size: 2.8rem;
+  background: linear-gradient(to right, var(--text-main), var(--neon-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* A Glassmorphism Card Style design for a generic modern look */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-green));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.match-group {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* The Flag and Team Layout */
+.match-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+.team img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.team-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.vs-badge {
+  color: var(--neon-green);
+  font-weight: 800;
+  font-size: 1rem;
+  background: rgba(0, 255, 135, 0.1);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+}
+
+.match-info {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #c4d4dd;
+}
+
+/* A Loading Spinner */
+.loader {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--neon-green);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 255, 135, 0.2);
+  border-top-color: var(--neon-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+@keyframes spin { 
+  to { transform: rotate(360deg); } 
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@font-face {
+  font-family: 'FWC2026';
+  /* The file path of the font used for the title */
+  src: url('FWC2026-UltraCondensedBlack.8e6ba053.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
